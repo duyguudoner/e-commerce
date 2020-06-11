@@ -10,4 +10,5 @@ public class EticaretApplication {
         SpringApplication.run(EticaretApplication.class, args);
     }
 
+
 }
