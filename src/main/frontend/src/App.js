@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom'
+import { Header, Kategoriler, Siparisler } from './components/index'
+import './css/index.scss'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainApp">
+      <Router>
+        <div>
+          <nav>
+            <ul>
+            <li>
+                <Link to="/">Ana Sayfa</Link>
+              </li>
+              <li>
+                <Link to="/kategoriler">Kategoriler</Link>
+              </li>
+              <li>
+                <Link to="/siparisler">Siparişler</Link>
+              </li>
+              <li>
+                <Link to="/uyeler">Üyeler</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <Switch>
+          {/* <Route path="/"><AnaSayfa /></Route> */}
+          <Route path="/kategoriler"><Kategoriler /></Route>
+          <Route path="/siparisler"><Siparisler /></Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
