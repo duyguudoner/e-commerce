@@ -17,7 +17,7 @@ public class Referans {
     private Long referansno;
     private String ref_type;
     private String ref_title;
-    private String ref_ustTitle;
+    private String ref_usttitle;
     private String ref_durum;
 
     public Referans(){
@@ -48,11 +48,11 @@ public class Referans {
     }
 
     public String getRef_ustTitle() {
-        return ref_ustTitle;
+        return ref_usttitle;
     }
 
     public void setRef_ustTitle(String ref_ustTitle) {
-        this.ref_ustTitle = ref_ustTitle;
+        this.ref_usttitle = ref_ustTitle;
     }
 
     public String getRef_durum() {
