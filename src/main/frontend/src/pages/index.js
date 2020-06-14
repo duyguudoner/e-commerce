@@ -1,0 +1,6 @@
+export { default as AnaSayfa } from './AnaSayfa'
+export { default as Alisveris } from './Alisveris'
+export { default as Iletisim } from './Iletisim'
+export { default as Hakkimizda } from './Hakkimizda'
+export { default as Register } from './Register'
+export { default as Login } from './Login'
