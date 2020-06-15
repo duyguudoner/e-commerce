@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { Alisveris, AnaSayfa, Iletisim, Hakkimizda, Register, Login } from './pages/index'
+import { Alisveris, AnaSayfa, Iletisim, Hakkimizda, Register, Login, Admin } from './pages/index'
 import { TunaLogoImage } from './img/index'
 import { Menu, Segment, Icon } from 'semantic-ui-react'
 import './css/index.scss'
@@ -76,6 +76,7 @@ function App() {
         <Route path="/hakkimizda"><Hakkimizda /></Route>
         <Route path="/register"><Register /></Route>
         <Route path="/login"><Login /></Route>
+        <Route path="/macdell/admin"><Admin /></Route>
 
       </Switch>
     </Router >
