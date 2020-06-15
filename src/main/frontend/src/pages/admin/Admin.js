@@ -11,7 +11,7 @@ class Admin extends Component {
         const { activeItem } = this.state
 
         return (
-            <Grid>
+            <Grid style={{ padding: "1em 1em" }}>
                 <Grid.Column width={4}>
                     <Menu fluid vertical tabular>
                         <Menu.Item
