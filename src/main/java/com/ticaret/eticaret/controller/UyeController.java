@@ -36,7 +36,7 @@ public class UyeController {
     }
 
     @RequestMapping(value = "{id}",method = RequestMethod.PUT)
-    public Uye update(@PathVariable Long id,@RequestBody Uye uye) {
+    public Uye update(@PathVariable Long id, @RequestBody Uye uye) {
         Uye existingUye = uyeRepository.getOne(id);
         BeanUtils.copyProperties(uye,existingUye,"uyeno");
         return uyeRepository.saveAndFlush(uye);
