@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { CreateKategori } from '../../components'
 
 class Kategoriler extends Component {
-    render() {
-        return (
-            <div>
-                Kategoriler
-            </div>
+    render(){
+        return(
+            <CreateKategori/>
         )
     }
+
+  
 }
 
 export default Kategoriler;
