@@ -1,14 +1,10 @@
-const axios = require('axios');
+import axiosConfig from '../common/axiosConfig';
 
-function createKategori(kategoriObject) {
-    axios.post('http://localhost:8080/kategori',kategoriObject)
+export function createKategori(kategoriObject) {
+    axiosConfig.post('/kategori',kategoriObject)
         .then((response) => {
             console.log(response);
         }, (error) => {
             console.log(error);
         });
-}
-
-module.exports = {
-    createKategori
 }

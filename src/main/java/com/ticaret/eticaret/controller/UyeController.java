@@ -8,6 +8,7 @@ import com.ticaret.eticaret.repository.UyeRepository;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/uye")
 public class UyeController {
