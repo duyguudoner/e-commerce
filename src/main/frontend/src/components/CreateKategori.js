@@ -3,7 +3,11 @@ import { Button, Header, Modal, Input, TextArea } from 'semantic-ui-react'
 import { createKategori } from '../actions/kategoriAction'
 
 class CreateKategori extends Component {
-    state = { open: false, kategori_adi: "", kategori_aciklama: "" }
+    state = {
+        open: false,
+        kategori_adi: "",
+        kategori_aciklama: ""
+    }
 
     show = (dimmer) => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
@@ -20,7 +24,7 @@ class CreateKategori extends Component {
             kategoriObject.kategori_adi = kategori_adi;
             kategoriObject.kategori_aciklama = kategori_aciklama;
             await createKategori(kategoriObject);
-            this.setState({open: false,kategori_adi:"", kategori_aciklama:""})
+            this.setState({ open: false, kategori_adi: "", kategori_aciklama: "" })
         }
     }
 
