@@ -28,18 +28,19 @@ class Login extends Component {
         });
     }
 
-    handleLogin(e) {
+    async handleLogin(e) {
         e.preventDefault();
 
         this.setState({
             loading: true
         });
 
-        login(this.state.username, this.state.password)
-            .then(() => {
-                this.props.history.push("/profile");
-                window.location.reload();
-            });
+        const { username, password } = this.state;
+        var loginObject = {};
+        loginObject.username = username;
+        loginObject.password = password;
+
+        await login(loginObject)
     }
 
     render() {

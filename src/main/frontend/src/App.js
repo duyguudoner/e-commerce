@@ -48,88 +48,66 @@ class App extends Component {
       <Router>
         <Segment>
           <Menu stackable icon="labeled">
-            <Link to="/ana_sayfa">
-              <Menu.Item name="ana_sayfa" to="/ana_sayfa" onClick={() => this.handleItemClick("ana_sayfa")} className="navLogoLink">
-                <img src={TunaLogoImage} className="tunaLogoHeader" alt="tunaLogoHeader" />
-              </Menu.Item>
-            </Link>
-
-            <Link to="/ana_sayfa">
-              <Menu.Item name="ana_sayfa" to="/ana_sayfa" active={activeItem === "ana_sayfa"} style={{ color: activeItem === "ana_sayfa" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("ana_sayfa")} className="navLink">
-                <Icon name='home' className="headerIcon" />
-              Ana Sayfa
+            <Menu.Item name="ana_sayfa" as={Link} to="/ana_sayfa" onClick={() => this.handleItemClick("ana_sayfa")} className="navLogoLink">
+              <img src={TunaLogoImage} className="tunaLogoHeader" alt="tunaLogoHeader" />
             </Menu.Item>
-            </Link>
 
-            <Link to="/alisveris">
-              <Menu.Item name="alisveris" to="/alisveris" active={activeItem === "alisveris"} style={{ color: activeItem === "alisveris" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("alisveris")} className="navLink">
-                <Icon name='shop' className="headerIcon" />
+            <Menu.Item name="ana_sayfa" as={Link} to="/ana_sayfa" active={activeItem === "ana_sayfa"} style={{ color: activeItem === "ana_sayfa" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("ana_sayfa")} className="navLink">
+              <Icon name='home' className="headerIcon" />
+              Ana Sayfa
+              </Menu.Item>
+
+            <Menu.Item name="alisveris" as={Link} to="/alisveris" active={activeItem === "alisveris"} style={{ color: activeItem === "alisveris" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("alisveris")} className="navLink">
+              <Icon name='shop' className="headerIcon" />
               Alışveriş
             </Menu.Item>
-            </Link>
 
-            <Link to="/iletisim">
-              <Menu.Item name="iletisim" to="/iletisim" active={activeItem === "iletisim"} style={{ color: activeItem === "iletisim" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("iletisim")} className="navLink">
-                <Icon name='phone' className="headerIcon" />
+            <Menu.Item name="iletisim" as={Link} to="/iletisim" active={activeItem === "iletisim"} style={{ color: activeItem === "iletisim" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("iletisim")} className="navLink">
+              <Icon name='phone' className="headerIcon" />
               İletişim
             </Menu.Item>
-            </Link>
 
-            <Link to="/hakkimizda">
-              <Menu.Item name="hakkimizda" to="/hakkimizda" active={activeItem === "hakkimizda"} style={{ color: activeItem === "hakkimizda" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
-                <Icon name='info' className="headerIcon" />
+            <Menu.Item name="hakkimizda" as={Link} to="/hakkimizda" active={activeItem === "hakkimizda"} style={{ color: activeItem === "hakkimizda" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
+              <Icon name='info' className="headerIcon" />
               Hakkımızda
             </Menu.Item>
-            </Link>
 
             {showModeratorBoard &&
-              <Link to="/hakkimizda">
-                <Menu.Item name="hakkimizda" to="/hakkimizda" active={activeItem === "hakkimizda"} style={{ color: activeItem === "hakkimizda" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
-                  <Icon name='info' className="headerIcon" />
-              Moderatör
-            </Menu.Item>
-              </Link>
+              <Menu.Item name="hakkimizda" as={Link} to="/hakkimizda" active={activeItem === "hakkimizda"} style={{ color: activeItem === "hakkimizda" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
+                <Icon name='info' className="headerIcon" />
+                Moderatör
+              </Menu.Item>
             }
 
             {showAdminBoard &&
-              <Link to="/macdell/admin">
-                <Menu.Item name="admin" to="/macdell/admin" active={activeItem === "admin"} style={{ color: activeItem === "admin" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("admin")} className="navLink">
-                  <Icon name='info' className="headerIcon" />
-              Admin
-            </Menu.Item>
-              </Link>
+              <Menu.Item name="admin" as={Link} to="/macdell/admin" active={activeItem === "admin"} style={{ color: activeItem === "admin" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("admin")} className="navLink">
+                <Icon name='info' className="headerIcon" />
+                Admin
+              </Menu.Item>
             }
 
             {currentUser ?
               <Menu.Menu position="right">
-                <Link to="/register">
-                  <Menu.Item name="login" to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={this.logOut} className="navLink">
-                    <Icon name='add user' className="headerIcon" />
-          Çıkış Yap
+                <Menu.Item name="login" as={Link} to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={this.logOut} className="navLink">
+                  <Icon name='add user' className="headerIcon" />
+                  Çıkış Yap
               </Menu.Item>
-                </Link>
-                <Link to="/register">
-                  <Menu.Item name="profile" to="/profile" active={activeItem === "profile"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
-                    <Icon name='add user' className="headerIcon" />
-                    {currentUser.uye_username}
-                  </Menu.Item>
-                </Link>
+                <Menu.Item name="profile" as={Link} to="/profile" active={activeItem === "profile"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
+                  <Icon name='add user' className="headerIcon" />
+                  {currentUser.uye_username}
+                </Menu.Item>
               </Menu.Menu>
               :
               <Menu.Menu position="right">
-                <Link to="/register">
-                  <Menu.Item name="register" to="/register" active={activeItem === "register"} style={{ color: activeItem === "register" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("register")} className="navLink">
-                    <Icon name='add user' className="headerIcon" />
-              Kayıt Ol
-                  </Menu.Item>
-                </Link>
+                <Menu.Item name="register" as={Link} to="/register" active={activeItem === "register"} style={{ color: activeItem === "register" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("register")} className="navLink">
+                  <Icon name='add user' className="headerIcon" />
+                  Kayıt Ol
+                </Menu.Item>
 
-                <Link to="/login">
-                  <Menu.Item name="login" to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
-                    <Icon name='user' className="headerIcon" />
-              Giriş Yap
-                  </Menu.Item>
-                </Link>
+                <Menu.Item name="login" as={Link} to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
+                  <Icon name='user' className="headerIcon" />
+                  Giriş Yap
+                </Menu.Item>
               </Menu.Menu>}
 
           </Menu>

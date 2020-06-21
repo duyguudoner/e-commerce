@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Modal, Input, TextArea } from 'semantic-ui-react'
+import { Button, Modal, Input, TextArea } from 'semantic-ui-react'
 import { createKategori } from '../actions/kategoriAction'
 
 class CreateKategori extends Component {
@@ -18,7 +18,7 @@ class CreateKategori extends Component {
         this.setState({ kategori_aciklama: event.target.value })
     }
     handleSubmit = async () => {
-        const { open, dimmer, kategori_adi, kategori_aciklama } = this.state
+        const { kategori_adi, kategori_aciklama } = this.state
         if (kategori_adi !== "" && kategori_aciklama !== "") {
             var kategoriObject = {}
             kategoriObject.kategori_adi = kategori_adi;
@@ -46,7 +46,7 @@ class CreateKategori extends Component {
                     <Modal.Actions>
                         <Button color='black' onClick={this.close}>
                             İptal
-            </Button>
+                        </Button>
                         <Button
                             positive
                             icon='checkmark'
