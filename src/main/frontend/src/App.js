@@ -73,7 +73,7 @@ class App extends Component {
             </Menu.Item>
 
             {showModeratorBoard &&
-              <Menu.Item name="hakkimizda" as={Link} to="/hakkimizda" active={activeItem === "hakkimizda"} style={{ color: activeItem === "hakkimizda" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
+              <Menu.Item name="hakkimizda" as={Link} to="/moderator" active={activeItem === "moderator"} style={{ color: activeItem === "moderator" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("hakkimizda")} className="navLink">
                 <Icon name='info' className="headerIcon" />
                 Moderatör
               </Menu.Item>
@@ -88,13 +88,13 @@ class App extends Component {
 
             {currentUser ?
               <Menu.Menu position="right">
-                <Menu.Item name="login" as={Link} to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={this.logOut} className="navLink">
+                <Menu.Item name="logout" as={Link} to="/logout" active={activeItem === "logout"} style={{ color: activeItem === "logout" ? "#2a97ae" : "" }} onClick={this.logOut} className="navLink">
                   <Icon name='add user' className="headerIcon" />
                   Çıkış Yap
               </Menu.Item>
-                <Menu.Item name="profile" as={Link} to="/profile" active={activeItem === "profile"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
+                <Menu.Item name="profile" as={Link} to="/profile" active={activeItem === "profile"} style={{ color: activeItem === "profile" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("profile")} className="navLink">
                   <Icon name='add user' className="headerIcon" />
-                  {currentUser.uye_username}
+                  {currentUser.username}
                 </Menu.Item>
               </Menu.Menu>
               :

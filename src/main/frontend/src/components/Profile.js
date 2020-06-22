@@ -16,7 +16,7 @@ class Profile extends Component {
         return (
             <div>
                 <h3>
-                    <strong>{currentUser.uye_adi}</strong> Profile
+                    <strong>{currentUser.username}</strong> Profile
                 </h3>
                 <p>
                     <strong>Token:</strong>{" "}
@@ -25,11 +25,11 @@ class Profile extends Component {
                 </p>
                 <p>
                     <strong>Id:</strong>{" "}
-                    {currentUser.uyeno}
+                    {currentUser.id}
                 </p>
                 <p>
                     <strong>Email:</strong>{" "}
-                    {currentUser.uye_mail}
+                    {currentUser.email}
                 </p>
                 <strong>Authorities:</strong>
                 <ul>

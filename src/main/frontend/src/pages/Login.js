@@ -41,6 +41,8 @@ class Login extends Component {
         loginObject.password = password;
 
         await login(loginObject)
+        this.props.history.push("/profile");
+        window.location.reload();
     }
 
     render() {
