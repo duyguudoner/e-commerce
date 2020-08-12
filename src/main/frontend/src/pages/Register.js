@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Form, Button } from 'semantic-ui-react'
-import { register } from '../actions/authenticationAction'
+import { Form, Button, Dimmer, Loader } from 'semantic-ui-react'
+import { register, login } from '../actions/authenticationAction'
+import { withRouter } from 'react-router'
 
 class Register extends Component {
     constructor(props) {
@@ -14,6 +15,8 @@ class Register extends Component {
             username: "",
             email: "",
             password: "",
+            clickSubmit: false,
+            loading: false
         };
     }
 
@@ -37,50 +40,72 @@ class Register extends Component {
 
     async handleRegister(e) {
         e.preventDefault();
+        this.setState({ clickSubmit: true, loading: true })
         var userObject = {};
         const { username, email, password } = this.state;
-        userObject.username = username;
-        userObject.email = email;
-        userObject.password = password;
-        userObject.role = ["user"];
+        if (username !== "" && email !== "" && password !== "") {
+            userObject.username = username;
+            userObject.email = email;
+            userObject.password = password;
+            userObject.role = ["user"];
 
-        var newUser = await register(userObject);
-        console.log(newUser);
+            var newUser = await register(userObject);
+            console.log(newUser)
+            if (newUser && newUser.status && newUser.status === 200) {
+                var loginObject = {};
+                loginObject.username = username;
+                loginObject.password = password;
+
+                var loginUser = await login(loginObject)
+                if (loginUser && loginUser.accessToken) {
+                    this.props.history.push("/profile");
+                }
+            }
+        } else {
+            this.setState({ loading: false });
+        }
     }
 
     render() {
-        const { username, email, password } = this.state;
+        const { username, email, password, clickSubmit, loading } = this.state;
         return (
-            <Form onSubmit={this.handleRegister}>
-                <Form.Input
-                    error={{ content: 'Please enter your first name', pointing: 'below' }}
-                    fluid
-                    label='First name'
-                    placeholder='First name'
-                    id='form-input-first-name'
-                    onChange={this.onChangeUsername}
-                    value={username}
-                />
-                <Form.Input
-                    error='Please enter your Password'
-                    fluid
-                    label='Password'
-                    placeholder='Password'
-                    onChange={this.onChangePassword}
-                    value={password}
-                />
-                <Form.Input
-                    error='Please enter your Email'
-                    fluid
-                    label='Email'
-                    placeholder='Email'
-                    onChange={this.onChangeEmail}
-                    value={email}
-                />
-                <Button type='submit'>Submit</Button>
-            </Form>
+            <div>
+                {loading &&
+                    <Dimmer active inverted>
+                        <Loader inverted>Yükleniyor...</Loader>
+                    </Dimmer>}
+                <Form onSubmit={this.handleRegister}>
+                    <Form.Input
+                        error={(username === "" && clickSubmit) ? { content: 'Lütfen kullanıcı adını giriniz.', pointing: 'below' } : false}
+                        fluid
+                        label='Kullanıcı Adı'
+                        placeholder='Kullanıcı Adı'
+                        id='form-input-first-name'
+                        onChange={this.onChangeUsername}
+                        value={username}
+                    />
+                    <Form.Input
+                        error={(password === "" && clickSubmit) ? { content: 'Lütfen şifrenizi giriniz.', pointing: 'below' } : false}
+                        fluid
+                        label='Şifre'
+                        placeholder='Şifre'
+                        onChange={this.onChangePassword}
+                        value={password}
+                        type='password'
+                    />
+                    <Form.Input
+                        error={(email === "" && clickSubmit) ? { content: 'Lütfen geçerli bir e-posta adresi giriniz.', pointing: 'below' } : false}
+                        fluid
+                        label='E-posta Adresi'
+                        placeholder='tuna@gmail.com'
+                        onChange={this.onChangeEmail}
+                        value={email}
+                    />
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </div>
         )
     }
 }
 
-export default Register;
+export default withRouter(Register);
