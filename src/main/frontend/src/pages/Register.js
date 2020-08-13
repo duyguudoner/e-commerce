@@ -58,7 +58,7 @@ class Register extends Component {
 
                 var loginUser = await login(loginObject)
                 if (loginUser && loginUser.accessToken) {
-                    this.props.history.push("/profile");
+                    window.location = window.location.origin;
                 }
             }
         } else {
@@ -101,7 +101,7 @@ class Register extends Component {
                         onChange={this.onChangeEmail}
                         value={email}
                     />
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit'>Üye Ol</Button>
                 </Form>
             </div>
         )

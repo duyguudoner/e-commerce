@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Dimmer, Loader } from 'semantic-ui-react'
 import { login } from '../actions/authenticationAction'
+import { withRouter } from 'react-router'
 
 class Login extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
+            clickSubmit: false,
             loading: false
         };
     }
@@ -30,46 +32,54 @@ class Login extends Component {
 
     async handleLogin(e) {
         e.preventDefault();
-
-        this.setState({
-            loading: true
-        });
-
+        this.setState({ clickSubmit: true, loading: true })
         const { username, password } = this.state;
         var loginObject = {};
-        loginObject.username = username;
-        loginObject.password = password;
+        if (username !== "" && password !== "") {
+            loginObject.username = username;
+            loginObject.password = password;
 
-        await login(loginObject)
-        this.props.history.push("/profile");
-        window.location.reload();
+            var loginUser = await login(loginObject)
+            if (loginUser && loginUser.accessToken) {
+                window.location = window.location.origin;
+            }
+        } else {
+            this.setState({ loading: false });
+        }
     }
 
     render() {
-        const { username, password } = this.state;
+        const { username, password, clickSubmit, loading } = this.state;
         return (
-            <Form onSubmit={this.handleLogin}>
-                <Form.Input
-                    error={{ content: 'Please enter your first name', pointing: 'below' }}
-                    fluid
-                    label='First name'
-                    placeholder='First name'
-                    id='form-input-first-name'
-                    onChange={this.onChangeUsername}
-                    value={username}
-                />
-                <Form.Input
-                    error='Please enter your Password'
-                    fluid
-                    label='Password'
-                    placeholder='Password'
-                    onChange={this.onChangePassword}
-                    value={password}
-                />
-                <Button type='submit'>Submit</Button>
-            </Form>
+            <div>
+                {loading &&
+                    <Dimmer active inverted>
+                        <Loader inverted>Yükleniyor...</Loader>
+                    </Dimmer>}
+                <Form onSubmit={this.handleLogin}>
+                    <Form.Input
+                        error={(username === "" && clickSubmit) ? { content: 'Lütfen kullanıcı adını giriniz.', pointing: 'below' } : false}
+                        fluid
+                        label='Kullanıcı Adı'
+                        placeholder='Kullanıcı Adı'
+                        id='form-input-first-name'
+                        onChange={this.onChangeUsername}
+                        value={username}
+                    />
+                    <Form.Input
+                        error={(password === "" && clickSubmit) ? { content: 'Lütfen şifrenizi giriniz.', pointing: 'below' } : false}
+                        fluid
+                        label='Şifre'
+                        placeholder='Şifre'
+                        onChange={this.onChangePassword}
+                        value={password}
+                        type='password'
+                    />
+                    <Button type='submit'>Giriş Yap</Button>
+                </Form>
+            </div>
         )
     }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -6,6 +6,7 @@ import { Menu, Segment, Icon } from 'semantic-ui-react'
 import './css/index.scss'
 import { getCurrentUser, logout } from './actions/authenticationAction'
 import { Profile } from './components/index'
+import { withRouter } from 'react-router'
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends Component {
 
   logOut() {
     logout();
+    window.location = window.location.origin;
   }
 
   handleItemClick(name) {
@@ -101,7 +103,7 @@ class App extends Component {
               <Menu.Menu position="right">
                 <Menu.Item name="register" as={Link} to="/register" active={activeItem === "register"} style={{ color: activeItem === "register" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("register")} className="navLink">
                   <Icon name='add user' className="headerIcon" />
-                  Kayıt Ol
+                  Üye Ol
                 </Menu.Item>
 
                 <Menu.Item name="login" as={Link} to="/login" active={activeItem === "login"} style={{ color: activeItem === "login" ? "#2a97ae" : "" }} onClick={() => this.handleItemClick("login")} className="navLink">
@@ -130,4 +132,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default withRouter(App);
